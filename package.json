@@ -1,14 +1,15 @@
 {
   "name": "web-scraper",
   "version": "1.0.0",
-  "description": "A web scraper using Puppeteer and Node.js",
+  "description": "A web scraper using Puppeteer Core and Node.js for deployment on Vercel",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "puppeteer": "^19.0.0",
+    "puppeteer-core": "^19.0.0",
+    "chrome-aws-lambda": "^10.1.0",
     "dotenv": "^10.0.0"
   }
 }
