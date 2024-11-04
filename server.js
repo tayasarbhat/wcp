@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 async function scrapeData() {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'] // Ensure compatibility with serverless environments
+    args: ['--no-sandbox', '--disable-setuid-sandbox'] // Ensures compatibility in serverless environments
   });
   const page = await browser.newPage();
 
@@ -17,10 +17,14 @@ async function scrapeData() {
     // Navigate to the login page
     await page.goto('https://soft.riuman.com/admin/login', { waitUntil: 'networkidle2' });
 
-    // Enter credentials and log in (adjust selectors as necessary)
-    await page.type('#username', process.env.USERNAME);
-    await page.type('#password', process.env.PASSWORD);
-    await page.click('#login-button'); // Adjust this selector based on the actual login button
+    // Enter email and password using the selectors you provided
+    await page.type('#email', process.env.USERNAME); // Enter the username/email
+    await page.type('#password', process.env.PASSWORD); // Enter the password
+
+    // Click the login button using the class selector or type selector
+    await page.click('button[type="submit"]'); // Using type attribute
+    // or use this if you prefer to use the class:
+    // await page.click('.btn.btn-primary');
 
     // Wait for navigation to the main data page
     await page.waitForNavigation({ waitUntil: 'networkidle2' });
